@@ -3,7 +3,7 @@ let token = true;
 
 function Header() {
   return (
-    <div className="flex  justify-between items-center m-6 mx-10 border-4">
+    <div className="flex  justify-between items-center mt-6 border-4">
       <NavLink to="/">
         <img
           className=" rounded-full w-14 h-14"

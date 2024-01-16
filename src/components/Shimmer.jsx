@@ -2,7 +2,7 @@ const Shimmer = () => {
 
     return(
     <>
-    <div className="flex gap-14 flex-wrap my-32 mx-10">
+    <div className="flex gap-14 flex-wrap my-32">
         <BlankCards/> 
         <BlankCards/> 
         <BlankCards/> 

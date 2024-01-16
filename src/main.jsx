@@ -9,9 +9,11 @@ import Contact from './components/Contact.jsx';
 import Login from './components/Login.jsx';
 import Cart from './components/Cart.jsx';
 
+import RestaurantPage from './components/RestaurantPage.jsx';
 
 
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+
 
 const approuter = createBrowserRouter([
   {
@@ -20,7 +22,7 @@ const approuter = createBrowserRouter([
     errorElement:<ErrorPage/>,
     children:[
       {
-        path:'',
+        path:'/',
         element:<Body/>
       },
       {
@@ -38,7 +40,12 @@ const approuter = createBrowserRouter([
       {
         path:"cart",
         element:<Cart/>
+      },
+      {
+        path:"restaurant/:id",
+        element:<RestaurantPage/>
       }
+
     ]
   }
 ])

@@ -3,6 +3,7 @@ import Cards from "./Cards";
 import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
 import CardError from "./CardError";
+import { Link } from "react-router-dom";
 
 function searchRestaurant(searchText, restaurants) {
   if (searchText === "") {
@@ -36,9 +37,9 @@ function Body() {
 },[])
 
  async function getAlldata(){
-  const allData = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4855122&lng=77.4902726&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING#")
+  const allData = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4855122&lng=77.4902726&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
   const jsonData = await allData.json();
-  const allInfo = await jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+  const allInfo = await jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
   //     console.log(allInfo);
 
   setAllRestaurants(allInfo);
@@ -52,7 +53,7 @@ function Body() {
 
 
   return (allRestaurants?.length === 0) ? <Shimmer/> : (
-    <div className="mx-10">
+    <div className="">
       <div className="flex ">
         <input
           className="my-6 border-2"
@@ -76,12 +77,16 @@ function Body() {
 
       <div className="flex gap-14 flex-wrap my-4">
         {
-            (searchedRestaurantList.length === 0) ? <CardError /> : searchedRestaurantList.map((restaurant) => {
-          return <Cards key={restaurant.info.id} {...restaurant.info} />
+            (searchedRestaurantList?.length === 0) ? <CardError /> : searchedRestaurantList.map((restaurant) => {
+          
+          return <Link to={"/restaurant/"+ restaurant.info.id} key={restaurant.info.id}> 
+          <Cards  {...restaurant.info} /> 
+          </Link>
 
 
 
         })}
+        
       </div>
     </div>
   );
