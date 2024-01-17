@@ -27,10 +27,10 @@ function Cards({cloudinaryImageId,name,areaName,avgRatingString,cuisines,costFor
           <h3 className="mb-1 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
             {name}
           </h3>
-          <h4 className="text-md"> Price: {costForTwo} </h4>
-          <h4 className="text-md">Rating: {avgRatingString} Stars</h4>
+          <h4 className="text-md"> Price: {costForTwo +"   .   "+ avgRatingString+"★"} </h4>
           
-          <h5 className="text-md">{cuisines.join(" , ")}</h5>
+          
+          <h5 className="text-md">{cuisines.slice(0, 2).join(" , ")}</h5>
           <p className=" text-md">{areaName}</p>
         </a>
       </div>

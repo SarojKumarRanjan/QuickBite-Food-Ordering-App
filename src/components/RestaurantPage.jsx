@@ -37,7 +37,7 @@ const RestaurantPage = () => {
           src={imageadd + restaurantInfo?.cloudinaryImageId}
           alt="RestaurantInfo"
         />
-        <div className="rounded-lg h-80 w-[600px] bg-slate-300">
+        <div className="rounded-lg h-80 w-[600px] bg-slate-200">
           <h1 className=" text-4xl py-10 p-14 font-bold">
             {restaurantInfo?.name}
           </h1>
