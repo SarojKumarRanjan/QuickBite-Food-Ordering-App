@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { imageadd } from "../constant";
 import MenuList from "./MenuList";
+import Shimmer from "./Shimmer";
 
 const RestaurantPage = () => {
   const { id } = useParams();
 
   const [restaurantInfo, setRestaurantinfo] = useState({});
-  const [eachRestaurantInfo,setEachRestaurantInfo] = useState({});
+  const [eachRestaurantInfo,setEachRestaurantInfo] = useState([]);
 
-  console.log(eachRestaurantInfo);
+  //console.log(eachRestaurantInfo.slice(2));
 
   useEffect(() => {
     getRestaurantInfo();
@@ -28,7 +29,7 @@ const RestaurantPage = () => {
     
   }
 
-  return (
+  return restaurantInfo.length ===0 ? <Shimmer/> : (
     <div className=" mt-14 mr-60 ml-60">
       <div className="flex justify-between">
         <img
@@ -61,10 +62,11 @@ const RestaurantPage = () => {
         </div>
       </div>
       <div>
-        <MenuList info={eachRestaurantInfo[1]?.card?.card?.itemCards}/>
 
-
-        {(console.log(eachRestaurantInfo[1]?.card?.card?.itemCards))}
+      {Object.values(eachRestaurantInfo).slice(2).map((eachMenu,index) => (
+           <MenuList info={eachMenu} key={index} />
+        ))}
+      
       </div>
     </div>
   );
