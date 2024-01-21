@@ -33,13 +33,26 @@ function Body() {
  useEffect(() => {
     getAlldata();
    //setSearchedRestaurantList(allRestaurantData)
+
+
+   // if we are calling the methods like settimeout or setinterval the we need to stop it before we move to another page or component
+   // we use a return function to stop those methods while moving to another page 
+
+   /* const timer = setInterval(() => {},1000) */
+
+   return () => {
+   // this is like unmounting phase in class based component 
+
+   // clearInterval(timer); 
+
+   }
    
 },[])
 
  async function getAlldata(){
   const allData = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4855122&lng=77.4902726&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
   const jsonData = await allData.json();
-  const allInfo = await jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+  const allInfo = await jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
   //     console.log(allInfo);
 
   setAllRestaurants(allInfo);
