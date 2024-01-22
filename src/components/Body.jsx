@@ -4,17 +4,8 @@ import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
 import CardError from "./CardError";
 import { Link } from "react-router-dom";
+import {SearchRestaurant} from "../utils/helper"
 
-function searchRestaurant(searchText, restaurants) {
-  if (searchText === "") {
-    return restaurants;
-  } else {
-    const lowercaseSearchText = searchText.toLowerCase();
-    return restaurants.filter((restaurant) =>
-      restaurant.info.name.toLowerCase().includes(lowercaseSearchText)
-    );
-  }
-}
 
 
 function Body() {
@@ -39,21 +30,21 @@ function Body() {
    // we use a return function to stop those methods while moving to another page 
 
    /* const timer = setInterval(() => {},1000) */
-
+/* 
    return () => {
-   // this is like unmounting phase in class based component 
+    this is like unmounting phase in class based component 
 
-   // clearInterval(timer); 
+   clearInterval(timer); 
 
-   }
+   } */
    
 },[])
 
  async function getAlldata(){
   const allData = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4855122&lng=77.4902726&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
   const jsonData = await allData.json();
-  const allInfo = await jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-  //     console.log(allInfo);
+  const allInfo = await jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      console.log(allInfo);
 
   setAllRestaurants(allInfo);
   setSearchedRestaurantList(allInfo);
@@ -79,7 +70,7 @@ function Body() {
         />
         <button
           onClick={() => {
-            const data = searchRestaurant(searchInput,allRestaurants);
+            const data = SearchRestaurant(searchInput,allRestaurants);
             setSearchedRestaurantList(data);
           }}
           className="mx-7 px-2 h-10 my-6 border-2"

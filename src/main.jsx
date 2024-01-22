@@ -1,18 +1,23 @@
 //import React from 'react'
+import { lazy,Suspense } from 'react';
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import Body from './components/Body.jsx';
-import About from "./components/About.jsx"
+
 import ErrorPage from './components/ErrorPage.jsx';
 import Contact from './components/Contact.jsx';
 import Login from './components/Login.jsx';
 import Cart from './components/Cart.jsx';
+import Shimmer from './components/Shimmer.jsx';
 
 import RestaurantPage from './components/RestaurantPage.jsx';
 
 
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+
+// eslint-disable-next-line react-refresh/only-export-components
+const About  = lazy(() => import("./components/About.jsx"))
 
 
 const approuter = createBrowserRouter([
@@ -27,7 +32,9 @@ const approuter = createBrowserRouter([
       },
       {
         path:"about",
-        element:<About/>
+        element:<Suspense fallback={<Shimmer/>}>
+        <About/>
+        </Suspense>
       },
       {
         path:"contact",
