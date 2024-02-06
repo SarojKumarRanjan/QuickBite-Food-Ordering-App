@@ -1,6 +1,24 @@
+import { useDispatch } from "react-redux";
 import { imageadd } from "../constant";
+import { addItem,removeItem } from "../utils/cartSlice";
+
+
 
 const MenuList = (info) => {
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = () => {
+  
+  dispatch(addItem("mango"))
+  }
+const handleRemoveItem = () => {
+  dispatch(removeItem())
+}
+
+
+
+
   // console.log(info?.info?.card?.card?.itemCards);
   return info === undefined || !info?.info?.card?.card?.itemCards ? null : (
     <div className=" w-[960px]  bg-slate-200 mt-6 rounded-lg border-4 border-gray-600">
@@ -26,6 +44,10 @@ const MenuList = (info) => {
               <p className=" px-10 pt-2 pb-1 text-sm font-light">
                 {menuList?.card?.info?.description}
               </p>
+              <span className="px-10 flex gap-2 m-1">
+                <button onClick={() => {handleAddItem()}} className=" text-green-700 bg-white p-1 rounded-md text-sm" >Add</button>
+                <button onClick={() => {handleRemoveItem()}} className=" text-red-600 bg-white p-1 rounded-md text-sm">Remove</button>
+              </span>
             </div>
 
             {menuList?.card?.info?.imageId && (

@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
+import {  useSelector } from "react-redux";
 let token = true;
 
 function Header() {
+  const itemCount = useSelector(store => store.cart.item);
   return (
     <div className="flex  justify-between items-center mt-6 border-4">
       <NavLink to="/">
@@ -23,7 +25,7 @@ function Header() {
           <NavLink to="/contact">Contact</NavLink>
         </li>
         <li>
-          <NavLink to="/cart">Cart</NavLink>
+          <NavLink to="/cart">Cart{"("+itemCount.length+")"}</NavLink>
         </li>
         {token ? (
           <li>

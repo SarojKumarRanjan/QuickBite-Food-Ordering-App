@@ -199,3 +199,5 @@ export const restaurantList = [
 
 
   export const RESTAURANT_URL = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4855122&lng=77.4902726&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+
+// export const RESTAURANT_URL = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5766462&lng=77.2311749&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"-
